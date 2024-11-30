@@ -1,0 +1,44 @@
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  margin: 0;
+  padding: 0;
+}
+.profile-container{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(108, 208, 245);
+  border-radius: 2rem;
+  padding: 2rem;
+  text-align: center;
+}
+.my-img{
+  border-radius: 10rem;
+  width: 6rem;
+  height: 6rem;
+  margin-left: 5rem;
+}
+.my-name{
+  margin-bottom: 0rem;
+}
+.hometown{
+
+}
+.cool {
+  background: linear-gradient(#959595, #959595);
+  width: 100%; /* or any desired value */
+  height: 1px; /* or any desired value */
+}
+
+.stats-container{
+  display: flex;
+  flex-flow: row wrap;
+}
+.stat{
+  display: flex;
+  flex-direction: column;
+  line-height: 0;
+  margin: 1rem;
+}

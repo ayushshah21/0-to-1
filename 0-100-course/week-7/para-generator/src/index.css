@@ -1,0 +1,49 @@
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+  justify-content: center;
+  padding: 1rem;
+}
+.user-input{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+input{
+  width: 25rem;
+  font-size: 1.1rem;
+  padding: 1rem;
+
+}
+.user-input button{
+  margin: 0rem 1rem;
+  width: 6rem;
+  background-color: black;
+  color: white;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+
+
+.word-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 40rem;
+  overflow-y: auto; /* Enable scrolling if content overflows */
+  height: calc(100% - 10rem); /* Adjust based on `.user-input` height */
+  margin-top: 2rem;
+  padding: 1rem;
+}

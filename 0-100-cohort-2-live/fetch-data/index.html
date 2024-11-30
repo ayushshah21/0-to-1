@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+  </head>
+  <body>
+    <script>
+      async function getAnimalData() {
+        const res = await fetch("https://fakerapi.it/api/v1/persons");
+        const info = await res.json();
+        const realInfo = info.data;
+        console.log(realInfo);
+        const dataEl = document.querySelector(".call-data");
+        dataEl.innerHTML = JSON.stringify(info);
+        // let htmlString = "<ul>";
+        // realInfo.forEach((item) => {
+        //   htmlString += `
+        //   <li>
+        //     Name: ${item.firstname} ${item.lastname},
+        //     Email: ${item.email}, 
+        //     Phone: ${item.phone}
+        //     </li>`;
+        // });
+
+        // htmlString += "</ul>";
+
+        // // Update the innerHTML of the output element
+        // dataEl.innerHTML = htmlString;
+      }
+      getAnimalData();
+    </script>
+    <div class="call-data"></div>
+    <!-- <script src="index.js"></script> -->
+  </body>
+</html>
