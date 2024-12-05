@@ -50,7 +50,6 @@ const validateUser = async (req: Request, res: Response, next: NextFunction) => 
         }
     }
     const userObj = { email: req.headers.username, password: req.headers.password };
-    console.log(userObj);
     const validateCredentials = userSignInSchema.safeParse(userObj);
     if (!validateCredentials.success) {
         return res.status(400).json({ msg: "Please provide valid email and password" });

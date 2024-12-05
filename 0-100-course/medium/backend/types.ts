@@ -7,10 +7,16 @@ interface UserSignIn{
     email: string,
     password: string,
 }
-interface Post{
+interface CreatePost{
     title: string,
     content: string,
     published?: boolean,
+    userId: number,
+}
+interface UpdatePost{
+    title?: string,
+    content?: string,
+    published?: boolean,
 }
 
-export {User, Post, UserSignIn};
+export {User, CreatePost, UserSignIn, UpdatePost};
