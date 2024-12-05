@@ -9,6 +9,12 @@ router.post('/', async (req, res) => {
 router.put('/:id', async(req, res) => {
     postController.updateBlog(req, res);
 })
-router.put('/', () => console.log("Hi"))
+router.get('/:id', async(req, res) => {
+    postController.getBlog(req, res);
+})
+
+router.get('/', async(req, res) => {
+    postController.getAllBlogs(req, res);
+})
 
 export default router;

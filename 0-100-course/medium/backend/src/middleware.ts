@@ -1,4 +1,3 @@
-import express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import { PrismaClient } from '@prisma/client'
 import jwt from 'jsonwebtoken';

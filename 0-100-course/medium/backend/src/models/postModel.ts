@@ -17,4 +17,14 @@ export class PostModel {
             data
         })
     }
+    static async getBlog(id: number){
+        return await prisma.post.findUnique({
+            where : {
+                id
+            }
+        })
+    }
+    static async getAllBlogs(){
+        return await prisma.post.findMany();
+    }
 }

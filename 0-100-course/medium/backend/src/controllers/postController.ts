@@ -1,4 +1,3 @@
-import express from 'express';
 import { Request, Response } from 'express'; 
 import z from 'zod';
 import { PostModel } from '../models/postModel';
@@ -50,4 +49,19 @@ export class PostController {
             return res.status(400).json({ msg: "Update error: Blog Post doesn't exist" });
         }
     }
+    getBlog = async(req: Request, res: Response) => {
+        const id = Number(req.params.id);
+        if(isNaN(id)) return res.status(400).json({msg: "Invalid id"}); 
+        const blog = await PostModel.getBlog(id);
+        if(!blog){
+            return res.status(400).json({msg: "Blog doesn't exist"}); 
+        }
+        return res.status(200).json({msg: blog});
+    }
+
+    getAllBlogs = async(_req: Request, res: Response) => {
+        const allBlogs = await PostModel.getAllBlogs();
+        return res.status(200).json({allBlogs});
+    }
+
 }
