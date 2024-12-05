@@ -43,11 +43,12 @@ export class UserController {
         if (!userExists) {
             return res.status(403).json({ msg: "Incorrect username or password" });
         }
+        const id = userExists.id;
         const secret = process.env.JWT_SECRET;
         if(!secret){
             return res.status(403).json({msg: "Internal Error"});
         }
-        const token = jwt.sign({email}, secret);
+        const token = jwt.sign({id}, secret);
         return res.status(200).json({msg: "Signed in successfully", token});
     }
 }

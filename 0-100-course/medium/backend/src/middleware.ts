@@ -39,6 +39,7 @@ const validateUser = async (req: Request, res: Response, next: NextFunction) => 
         }
         try {
             const decoded = jwt.verify(token, secret) as JwtPayload;
+            console.log('Decoded token contents:', decoded); 
             if (decoded.id) {
                 req.username = decoded.id;
                 return next();
