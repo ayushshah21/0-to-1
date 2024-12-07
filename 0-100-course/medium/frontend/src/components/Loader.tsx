@@ -6,7 +6,7 @@ const Loader = () => {
       strokeColor="grey"
       strokeWidth="5"
       animationDuration="0.75"
-      width="76"
+      width="24"
       visible={true}
     />
   )
