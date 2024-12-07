@@ -1,4 +1,5 @@
 export interface Blog {
+    id: number,
     publishedDate: Date,
     title: string,
     content: string

@@ -9,7 +9,6 @@ const useBlogs = () => {
         async function getBlogs(){
             try {
                 const res = await axios.get(`${BACKEND_URL}/api/blog`);
-                console.log(res.data.allBlogs);
                 setBlogs(res.data.allBlogs);
                 setLoading(false);
               } catch (err) {

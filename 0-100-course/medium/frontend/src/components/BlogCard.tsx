@@ -1,9 +1,11 @@
 import React from "react";
 import { Blog } from "../types/Blog";
 import Avatar from "./Avatar";
+import { Link } from "react-router-dom";
 
-const BlogCard = ({ publishedDate, title, content, user }: Blog) => {
+const BlogCard = ({ publishedDate, title, content, user, id }: Blog) => {
   return (
+    <Link to={`/blog/${id}`}>
     <div className="flex flex-col w-full sm:w-[560px] lg:w-[672px] cursor-pointer">
       <div className="flex flex-col justify-start w-full">
         <div className="flex flex-row items-center">
@@ -29,6 +31,7 @@ const BlogCard = ({ publishedDate, title, content, user }: Blog) => {
       </div>
       <div className="bg-slate-200 h-1 mb-7"></div>
     </div>
+    </Link>
   );
 };
 
