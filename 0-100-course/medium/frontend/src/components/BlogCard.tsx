@@ -1,4 +1,3 @@
-import React from "react";
 import { Blog } from "../types/Blog";
 import Avatar from "./Avatar";
 import { Link } from "react-router-dom";

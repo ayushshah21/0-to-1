@@ -22,7 +22,7 @@ const useBlog = (id: number) => {
             }
         }
         getBlog();
-    })
+    }, [id])
 
   return {blogInfo, loading}
 }

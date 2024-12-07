@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { BACKEND_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
 import SingBlogSkeleton from "../components/SingBlogSkeleton";
@@ -38,7 +38,11 @@ const Publish = () => {
       console.log(err, "Error creating Blog");
     }
   }
-  if (loading) return <SingBlogSkeleton />;
+  if (loading) return (
+    <div className="flex flex-col p-10 mr-10 mt-5 items-center">
+        <SingBlogSkeleton />;
+    </div>
+  ) 
   return (
     <div className="flex justify-center">
       <div className="flex flex-col w-[800px] p-5 m-5">

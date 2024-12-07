@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import Signup from './pages/SignUp'
 import Signin from './pages/SignIn'
 import Blog from './pages/Blog'
@@ -8,20 +8,37 @@ import Publish from './pages/Publish'
 
 
 function App() {
+  // Check token directly from localStorage
+  const isAuthenticated = () => {
+    return localStorage.getItem('token') !== null;
+  }
 
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
       <NavbarWrapper />
-        <Routes>
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/blog/:id" element={<Blog />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/publish" element={<Publish />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+      <Routes>
+        <Route 
+          path="/" 
+          element={isAuthenticated() ? <Navigate to="/blogs" /> : <Navigate to="/signin" />} 
+        />
+
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
+
+        <Route 
+          path="/blog/:id" 
+          element={isAuthenticated() ? <Blog /> : <Navigate to="/signin" />} 
+        />
+        <Route 
+          path="/blogs" 
+          element={isAuthenticated() ? <Blogs /> : <Navigate to="/signin" />} 
+        />
+        <Route 
+          path="/publish" 
+          element={isAuthenticated() ? <Publish /> : <Navigate to="/signin" />} 
+        />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
