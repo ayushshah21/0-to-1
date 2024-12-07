@@ -2,12 +2,13 @@ import axios from "axios";
 import React, { useState } from "react";
 import { BACKEND_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
+import SingBlogSkeleton from "../components/SingBlogSkeleton";
 
 const Publish = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   async function handlePublish() {
     if (!title || !content) {
       alert("Fill in all fields");
@@ -21,7 +22,7 @@ const Publish = () => {
       return;
     }
     try {
-        setLoading(true);
+      setLoading(true);
       const res = await axios.post(
         `${BACKEND_URL}/api/blog`,
         { title, content },
@@ -33,13 +34,11 @@ const Publish = () => {
       );
       setLoading(false);
       navigate(`/blog/${res.data.id}`);
-      
     } catch (err) {
-        console.log(err, "Error creating Blog");
-        
+      console.log(err, "Error creating Blog");
     }
   }
-  if(loading) return <div>Loading...</div>
+  if (loading) return <SingBlogSkeleton />;
   return (
     <div className="flex justify-center">
       <div className="flex flex-col w-[800px] p-5 m-5">
