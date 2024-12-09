@@ -15,7 +15,7 @@ The application allows users to create and participate in surveys. Each survey c
 - Vote in a survey
 - Get the results of a survey
 
-  
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
