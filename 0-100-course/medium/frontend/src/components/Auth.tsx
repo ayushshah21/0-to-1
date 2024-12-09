@@ -27,18 +27,18 @@ const Auth = ({ type }: { type: string }) => {
       setLoading(true);
       const res =
         type === "Signin" ? await handleSignin() : await handleSignup();
-    console.log(res);
+      console.log(res);
       setLoading(false);
       localStorage.clear();
-      localStorage.setItem('email', JSON.stringify(email));
+      localStorage.setItem("email", JSON.stringify(email));
       localStorage.setItem("token", JSON.stringify(res.data.token));
+      console.log("NAVIGATING");
       navigate("/blogs");
+
     } catch (err) {
       setLoading(false);
       console.log(err, "Auth Error");
     }
-    if (type === "Signin") handleSignin();
-    else handleSignup();
   }
 
   async function handleSignin() {
@@ -71,14 +71,20 @@ const Auth = ({ type }: { type: string }) => {
         {type === "Signin"
           ? "Don't have an account?"
           : "Already have an account?"}{" "}
-        {!loading && <Link
-          className="underline"
-          to={type === "Signin" ? "/signup" : "/signin"}
-        >
-          {" "}
-          {type === "Signup" ? "Sign in" : "Sign Up"}{" "}
-        </Link>}
-        {loading && <span className="underline cursor-pointer">{type === "Signup" ? "Sign in" : "Sign Up"}</span>}
+        {!loading && (
+          <Link
+            className="underline"
+            to={type === "Signin" ? "/signup" : "/signin"}
+          >
+            {" "}
+            {type === "Signup" ? "Sign in" : "Sign Up"}{" "}
+          </Link>
+        )}
+        {loading && (
+          <span className="underline cursor-pointer">
+            {type === "Signup" ? "Sign in" : "Sign Up"}
+          </span>
+        )}
       </div>
       <div className="flex flex-col justify-center">
         {type === "Signup" ? (

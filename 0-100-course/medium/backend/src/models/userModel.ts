@@ -25,5 +25,20 @@ export class UserModel {
         })
     }
 
+    static async getInfoEmail(email: string){
+        try {
+            const user = await prisma.user.findUnique({
+                where : {
+                    email
+                }
+            });
+            console.log('Found user:', user);
+            return user;
+        } catch (error) {
+            console.error('Error finding user:', error);
+            throw error;
+        }
+    }
+
     
 }

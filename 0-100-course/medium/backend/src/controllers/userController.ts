@@ -51,4 +51,19 @@ export class UserController {
         const token = jwt.sign({id}, secret);
         return res.status(200).json({msg: "Signed in successfully", token});
     }
+
+
+    getInfo = async (req: Request, res: Response) => {
+        const email = req.body.email;
+        console.log(email);
+        if(!email) return res.status(400).json({msg: "Invalid Input"});
+        try{
+            const userInfo = await UserModel.getInfoEmail(email);
+            return res.status(200).json({userInfo});
+        }
+        catch(err){
+            return res.status(400).json({msg: "Invalid Input"});
+        }
+        
+    }
 }

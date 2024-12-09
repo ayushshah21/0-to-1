@@ -21,10 +21,35 @@ export class PostModel {
         return await prisma.post.findUnique({
             where : {
                 id
+            },
+            select : {
+                content: true,
+                title: true,
+                id: true,
+                publishedDate: true,
+                user: {
+                    select : {
+                        firstName: true,
+                        lastName: true
+                    }
+                }
             }
         })
     }
     static async getAllBlogs(){
-        return await prisma.post.findMany();
+        return await prisma.post.findMany({
+            select : {
+                content: true,
+                title: true,
+                id: true,
+                publishedDate: true,
+                user: {
+                    select : {
+                        firstName: true,
+                        lastName: true
+                    }
+                }
+            }
+        });
     }
 }

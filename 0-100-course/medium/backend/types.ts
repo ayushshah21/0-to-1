@@ -1,6 +1,7 @@
 interface User{
     email: string,
-    name: string,
+    firstName: string,
+    lastName: string,
     password: string,
 }
 interface UserSignIn{

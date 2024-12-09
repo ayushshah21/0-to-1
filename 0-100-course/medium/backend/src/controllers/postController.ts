@@ -1,12 +1,11 @@
 import { Request, Response } from 'express'; 
 import z from 'zod';
 import { PostModel } from '../models/postModel';
+import { CreatePost } from 'types';
 
 const blogSchema = z.object({
     title: z.string().min(1),
     content: z.string().min(1),
-    userId: z.number(),
-    published: z.boolean().optional()
 })
 
 const updateBlogSchema = z.object({
@@ -18,11 +17,18 @@ const updateBlogSchema = z.object({
 
 export class PostController {
     createBlog = async(req: Request, res: Response ) => {
+        const id = Number(req.username);
+        if(!id) return res.status(404).json({msg: "Invalid id"});
         const validateBlog = blogSchema.safeParse(req.body);
         if(!validateBlog.success){
             return res.status(400).json({msg: "Invalid blog info"});
         }
-        const createPost = await PostModel.createBlog(req.body);
+        const newBody: CreatePost = {
+            title: req.body.title,
+            content: req.body.content,
+            userId: id
+        }
+        const createPost = await PostModel.createBlog(newBody);
         if(!createPost){
             return res.status(500).json({msg: "Internal Error, post not created"});
         }

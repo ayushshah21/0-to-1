@@ -12,5 +12,8 @@ router.post('/signup', userExists, async (req, res) => {
 router.post('/signin', validateUser, async (req, res) => {
     await userController.signin(req, res);
 })
+router.post('/info', async (req, res) => {
+    await userController.getInfo(req, res);
+})
 
 export default router;
