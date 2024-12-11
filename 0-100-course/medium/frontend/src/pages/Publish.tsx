@@ -40,7 +40,7 @@ const Publish = () => {
   }
   if (loading) return (
     <div className="flex flex-col p-10 mr-10 mt-5 items-center">
-        <SingBlogSkeleton />;
+        <SingBlogSkeleton />
     </div>
   ) 
   return (

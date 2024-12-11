@@ -57,12 +57,19 @@ export class PostController {
     }
     getBlog = async(req: Request, res: Response) => {
         const id = Number(req.params.id);
-        if(isNaN(id)) return res.status(400).json({msg: "Invalid id"}); 
-        const blog = await PostModel.getBlog(id);
-        if(!blog){
-            return res.status(400).json({msg: "Blog doesn't exist"}); 
+        if(isNaN(id)) {
+            return res.status(400).json({msg: "Invalid id"}); 
         }
-        return res.status(200).json({msg: blog});
+
+        try {
+            const blog = await PostModel.getBlog(id);
+            if(!blog) {
+                return res.status(404).json({msg: "Blog not found"});
+            }
+            return res.status(200).json({msg: blog});
+        } catch (error) {
+            return res.status(500).json({msg: "Internal server error"});
+        }
     }
 
     getAllBlogs = async(_req: Request, res: Response) => {

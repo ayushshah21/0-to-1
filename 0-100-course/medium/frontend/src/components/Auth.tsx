@@ -4,8 +4,10 @@ import { useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
 import Loader from "./Loader";
+import { useUser } from "../context/useUser";
 
 const Auth = ({ type }: { type: string }) => {
+  const { setUser } = useUser();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,9 +34,8 @@ const Auth = ({ type }: { type: string }) => {
       localStorage.clear();
       localStorage.setItem("email", JSON.stringify(email));
       localStorage.setItem("token", JSON.stringify(res.data.token));
-      console.log("NAVIGATING");
+      setUser(res.data.userData);
       navigate("/blogs");
-
     } catch (err) {
       setLoading(false);
       console.log(err, "Auth Error");

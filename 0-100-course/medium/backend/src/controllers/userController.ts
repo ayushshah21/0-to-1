@@ -12,6 +12,7 @@ const userSignInSchema = z.object({
 export class UserController {
     signup = async (req: Request, res: Response) => {
         const user = await UserModel.createUser(req.body);
+        console.log(user);
         const id = user.id;
         const secret = process.env.JWT_SECRET;
         if (!secret) {
@@ -22,7 +23,8 @@ export class UserController {
         if (!user) {
             return res.status(400).json({ msg: "Error, user not created" });
         }
-        return res.status(200).json({ msg: "User created successfully!", token });
+        const userData = {id, email: user.email, firstName: user.firstName, lastName: user.lastName }
+        return res.status(200).json({ msg: "User created successfully!", token, userData });
     }
     signin = async (req: Request, res: Response) => {
         if (req.username) {
@@ -40,6 +42,7 @@ export class UserController {
             return res.status(400).json({ msg: "Please provide valid email and password" });
         }
         const userExists = await UserModel.findUserByCredentials({ email, password });
+        console.log(userExists);
         if (!userExists) {
             return res.status(403).json({ msg: "Incorrect username or password" });
         }
@@ -49,7 +52,8 @@ export class UserController {
             return res.status(403).json({msg: "Internal Error"});
         }
         const token = jwt.sign({id}, secret);
-        return res.status(200).json({msg: "Signed in successfully", token});
+        const userData = {id, email: userExists.email, firstName: userExists.firstName, lastName: userExists.lastName }
+        return res.status(200).json({msg: "Signed in successfully", token, userData});
     }
 
 

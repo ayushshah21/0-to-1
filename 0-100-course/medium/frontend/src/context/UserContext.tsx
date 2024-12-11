@@ -1,8 +1,10 @@
+import { createContext } from "react";
+import { User } from "../types/User";
 
-const UserContext = () => {
-  return (
-    <div>UserContext</div>
-  )
+interface UserContextType {
+  user: User | null;
+  setUser: (user: User | null) => void;
+  isAuthenticated: boolean;
 }
 
-export default UserContext
+export const UserContext = createContext<UserContextType | undefined>(undefined);
