@@ -24,6 +24,17 @@ const Page = () => {
       console.log(err);
     }
   }
+  async function signInGoogle() {
+    try {
+      const res = await signIn("google", { redirect: false, callbackUrl: "/" });
+
+      if (res?.ok) {
+        router.push("/");
+      }
+    } catch (err) {
+      console.log("Sign-in failed due to an unexpected error:", err);
+    }
+  }
 
   return (
     <div className="font-[sans-serif]">
@@ -112,7 +123,11 @@ const Page = () => {
             </div>
 
             <div className="space-x-6 flex justify-center mt-8">
-              <button type="button" className="border-none outline-none">
+              <button
+                onClick={signInGoogle}
+                type="button"
+                className="border-none outline-none"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="32px"
